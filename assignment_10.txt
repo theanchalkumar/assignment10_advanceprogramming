@@ -1,0 +1,108 @@
+1.
+
+def get_frame(w,t,char):
+    l = []
+    if w > 2:
+        for i in range(t):
+            l1 = []
+            if i == 0 or i == t-1:
+                l1.append(char*w)
+            else:
+                pattern = char + ' ' * (w-2) + char
+                l1.append(pattern)
+            l.append(l1)                
+        return l
+    else:
+        return 'Invalid'
+            
+print(get_frame(4,5,'#')) 
+print(get_frame(10,3,'*'))
+print(get_frame(6,7,'+'))
+print(get_frame(2,5,'0'))
+
+2.
+
+def boolean_and(l):
+    res = True
+    i = 0
+    while i < len(l):
+        res = res and l[i]
+        l.pop(i)
+        l[0] = res
+        length = len(l)
+        i += 1
+    return l[0] and l[1]
+
+def boolean_or(l):
+    res = False
+    i = 0
+    while i < len(l):
+        res = res or l[i]
+        l.pop(i)
+        l[0] = res
+        length = len(l)
+        i += 1
+    return l[0] or l[1]
+
+def boolean_xor(l):
+    res = True
+    i = 0
+    while i < len(l):
+        res = res ^ l[i]
+        l.pop(i)
+        l[0] = res
+        length = len(l)
+        i += 1
+    return l[0] ^ l[1]
+
+print(boolean_and([False, True, False, True]) )        
+print(boolean_or([True, True, False, False])) 
+print(boolean_xor([True, True, False, False]))
+
+3.
+
+def make_box(n):
+    l = []
+    print('Output is::')
+    for i in range(n):
+        pattern = ''
+        if i == 0 or i == n-1:
+            pattern += '#'*n
+        else:
+            pattern += '#' + ' ' * (n-2) + '#'
+        l.append(pattern)    
+    return l
+
+print(make_box(5))
+print(make_box(3))
+print(make_box(2))
+print(make_box(1))
+
+4.
+
+def no_duplicate_letters(s):
+    words = s.split()
+    for word in words:
+        for letter in word:
+            if word.count(letter) > 1:
+                return False
+
+    return True
+        
+print(no_duplicate_letters("Fortune favours the bold."))
+print(no_duplicate_letters("You can lead a horse to water, but you can't make him drink."))
+print(no_duplicate_letters("Look before you leap."))
+print(no_duplicate_letters("An apple a day keeps the doctor away."))
+
+5.
+
+
+import re
+
+txt = "Texas = no, California = yes, Florida = yes, Michigan = no" 
+
+pattern = r'[a-zA-Z]+(?= = yes)'
+
+match = re.findall(pattern, txt)
+
+print(match)
